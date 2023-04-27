@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:icon="@drawable/ic_home_menu" android:id="@id/navigation_home" android:title="@string/title_home" />
+    <item android:icon="@drawable/ic_generate_password_menu" android:id="@id/navigation_generate_password" android:title="@string/title_generator" />
+    <item android:icon="@drawable/ic_analysis_menu" android:id="@id/navigation_analysis_password" android:title="@string/title_analysis" />
+</menu>

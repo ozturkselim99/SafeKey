@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/screens_bg_color"
+    android:padding="16.0dip">
+
+    <TextView
+        android:id="@id/tv_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/medium"
+        android:text="@string/welcome_message"
+        android:textColor="@color/dark_night_blue"
+        android:textSize="24.0sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@id/tv_current_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8.0dip"
+        android:fontFamily="@font/medium"
+        android:textColor="@color/slate_grey"
+        app:layout_constraintStart_toStartOf="@id/tv_welcome"
+        app:layout_constraintTop_toBottomOf="@id/tv_welcome" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@id/layout_search_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16.0dip"
+        app:boxCornerRadiusBottomEnd="12.0dip"
+        app:boxCornerRadiusBottomStart="12.0dip"
+        app:boxCornerRadiusTopEnd="12.0dip"
+        app:boxCornerRadiusTopStart="12.0dip"
+        app:boxStrokeWidth="0.0dip"
+        app:boxStrokeWidthFocused="0.0dip"
+        app:drawableTint="@color/black"
+        app:hintTextColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/tv_current_date"
+        app:startIconDrawable="@drawable/ic_search"
+        app:startIconTint="@color/black">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@id/edt_txt_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:hint="@string/search_your_passwords"
+            android:inputType="text"
+            android:maxLines="1"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@id/tv_categories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16.0dip"
+        android:fontFamily="@font/medium"
+        android:text="@string/categories"
+        android:textColor="@color/dark_night_blue"
+        android:textSize="24.0sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_search_input" />
+
+    <HorizontalScrollView
+        android:id="@id/horizontal_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16.0dip"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/tv_categories">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@id/chip_group_categories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleLine="true"
+            app:singleSelection="false">
+
+            <com.google.android.material.chip.Chip
+                style="@style/CustomChipChoice"
+                android:layout_width="100.0dip"
+                android:layout_height="match_parent"
+                android:text="@string/card"
+                android:textAlignment="center"
+                android:textAppearance="@style/chipText"
+                app:chipCornerRadius="8.0dip"
+                app:chipMinHeight="48.0dip"
+                app:rippleColor="@color/main_color" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/CustomChipChoice"
+                android:layout_width="100.0dip"
+                android:layout_height="wrap_content"
+                android:text="@string/browser"
+                android:textAlignment="center"
+                android:textAppearance="@style/chipText"
+                app:chipCornerRadius="8.0dip"
+                app:chipMinHeight="48.0dip"
+                app:rippleColor="@color/main_color" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/CustomChipChoice"
+                android:layout_width="100.0dip"
+                android:layout_height="wrap_content"
+                android:text="@string/social"
+                android:textAlignment="center"
+                android:textAppearance="@style/chipText"
+                app:chipCornerRadius="8.0dip"
+                app:chipMinHeight="48.0dip"
+                app:rippleColor="@color/main_color" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/CustomChipChoice"
+                android:layout_width="100.0dip"
+                android:layout_height="wrap_content"
+                android:text="@string/game"
+                android:textAlignment="center"
+                android:textAppearance="@style/chipText"
+                app:chipCornerRadius="8.0dip"
+                app:chipMinHeight="48.0dip"
+                app:rippleColor="@color/main_color" />
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@id/btn_add_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/dark_night_blue"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ic_add_password"
+        app:borderWidth="0.0dip"
+        app:fabCustomSize="60.0dip"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:maxImageSize="30.0dip"
+        app:tint="@android:color/white" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@id/rv_passwords"
+        android:layout_width="match_parent"
+        android:layout_height="0.0dip"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/horizontal_scroll_view" />
+
+    <include
+        android:id="@id/layout_no_result"
+        layout="@layout/no_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24.0dip"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/horizontal_scroll_view" />
+</androidx.constraintlayout.widget.ConstraintLayout>
