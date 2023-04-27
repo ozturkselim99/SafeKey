@@ -51,6 +51,7 @@ class AddPasswordFragment : Fragment() {
     private fun setupObservers() = with(binding) {
         addPasswordViewModel.password.observe(viewLifecycleOwner) { password ->
             tempPassword = password
+            selectedPasswordCategory=password.category.value
             spinnerCategories.setText(password.category.displayName, false)
             spinnerCategories.setSelection(password.category.value)
             edtTxtName.setText(password.name)

@@ -16,7 +16,7 @@ fun View.copyTextToClipboard(label: String, password: String) {
     val clipboardManager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     val clipData = ClipData.newPlainText(label, password)
     clipboardManager.setPrimaryClip(clipData)
-    Snackbar.make(this, "Text copied to clipboard", Snackbar.LENGTH_SHORT)
+    Snackbar.make(this, "Password copied to clipboard", Snackbar.LENGTH_SHORT)
         .setTextColor(ContextCompat.getColor(this.context, R.color.white))
         .setBackgroundTint(ContextCompat.getColor(this.context, R.color.dark_night_blue))
         .show()
