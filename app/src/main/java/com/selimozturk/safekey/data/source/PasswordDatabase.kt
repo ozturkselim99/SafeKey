@@ -7,9 +7,7 @@ import com.selimozturk.safekey.domain.model.Password
 import com.selimozturk.safekey.domain.util.Converters
 
 @Database(
-    entities = [Password::class],
-    version = 1,
-    exportSchema = true
+    entities = [Password::class], version = 2, exportSchema = true
 )
 @TypeConverters(Converters::class)
 abstract class PasswordDatabase : RoomDatabase() {

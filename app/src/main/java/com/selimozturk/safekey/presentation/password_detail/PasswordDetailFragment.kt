@@ -24,8 +24,7 @@ class PasswordDetailFragment : Fragment() {
     private var passwordId: Int? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentPasswordDetailBinding.inflate(inflater, container, false)
         passwordId = arguments?.getInt("id")
@@ -58,8 +57,7 @@ class PasswordDetailFragment : Fragment() {
         val bundle = Bundle()
         passwordId?.let { bundle.putInt("id", it) }
         findNavController().navigate(
-            R.id.action_navigation_password_detail_to_navigation_add_password2,
-            bundle
+            R.id.action_navigation_password_detail_to_navigation_add_password2, bundle
         )
     }
 
@@ -75,6 +73,7 @@ class PasswordDetailFragment : Fragment() {
             tvPassword.text = password.password
             tvCreatedDate.text = password.createdDate.toFormattedDateTime()
             tvLastEditedDate.text = password.lastEditedDate.toFormattedDateTime()
+            switchAutoFill.isChecked = password.isAutoFillChecked
         }
     }
 

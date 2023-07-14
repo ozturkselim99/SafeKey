@@ -8,10 +8,10 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.selimozturk.safekey.domain.util.checkEditTexts
 import com.selimozturk.safekey.databinding.FragmentAddPasswordBinding
 import com.selimozturk.safekey.domain.model.Password
 import com.selimozturk.safekey.domain.util.PasswordCategory
+import com.selimozturk.safekey.domain.util.checkEditTexts
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,6 +23,8 @@ class AddPasswordFragment : Fragment() {
     private var updatedPasswordId: Int? = null
     private var selectedPasswordCategory: Int = -1
     private lateinit var tempPassword: Password
+    private var autoFillChecked: Boolean = false
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -51,12 +53,13 @@ class AddPasswordFragment : Fragment() {
     private fun setupObservers() = with(binding) {
         addPasswordViewModel.password.observe(viewLifecycleOwner) { password ->
             tempPassword = password
-            selectedPasswordCategory=password.category.value
+            selectedPasswordCategory = password.category.value
             spinnerCategories.setText(password.category.displayName, false)
             spinnerCategories.setSelection(password.category.value)
             edtTxtName.setText(password.name)
             edtTxtEmailAndUsername.setText(password.userId)
             edtTxtPassword.setText(password.password)
+            switchAutoFill.isChecked = password.isAutoFillChecked
         }
     }
 
@@ -75,6 +78,9 @@ class AddPasswordFragment : Fragment() {
                 insertPassword()
             }
         }
+        switchAutoFill.setOnCheckedChangeListener { _, isChecked ->
+            autoFillChecked = isChecked
+        }
     }
 
     private fun insertPassword() = with(binding) {
@@ -86,7 +92,8 @@ class AddPasswordFragment : Fragment() {
                 createdDate = System.currentTimeMillis(),
                 password = edtTxtPassword.text.toString().trim(),
                 lastEditedDate = System.currentTimeMillis(),
-                category = PasswordCategory.values()[selectedPasswordCategory]
+                category = PasswordCategory.values()[selectedPasswordCategory],
+                isAutoFillChecked = autoFillChecked
             )
             addPasswordViewModel.insertPassword(password)
             findNavController().popBackStack()
@@ -101,6 +108,7 @@ class AddPasswordFragment : Fragment() {
                 password = edtTxtPassword.text.toString().trim()
                 lastEditedDate = System.currentTimeMillis()
                 category = PasswordCategory.values()[selectedPasswordCategory]
+                isAutoFillChecked = autoFillChecked
             }
             addPasswordViewModel.updatePassword(password)
             findNavController().popBackStack()

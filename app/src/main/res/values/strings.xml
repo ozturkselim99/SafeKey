@@ -211,5 +211,5 @@ PASSWORDS"</string>
     <string name="username_email_or_phone_number">Username, email or phone number</string>
     <string name="we_couldn_t_find_anything_try_searching_for_something_else">We couldn’t find anything. Try searching for something else.</string>
     <string name="weak">Weak</string>
-    <string name="welcome_message">Welcome To The OnePass</string>
+    <string name="welcome_message">Welcome To The SafeKey</string>
 </resources>
